@@ -1,0 +1,11 @@
+1. Challenges Faced
+
+During development, packet capture files were not being saved correctly due to improper packet storage handling and interruption flow during sniffing. This issue was resolved by implementing proper packet collection logic using Scapy's `wrpcap()` function and improving the packet capture workflow.
+
+2. Key Learnings
+
+* Packet capture using Scapy
+* Handling live network traffic
+* Saving captured packets into `.pcap` format
+* Analyzing packets using Wireshark
+* Network interface management in Kali Linux
