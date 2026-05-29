@@ -1,46 +1,37 @@
-from scapy.all import sniff, wrpcap, IP, TCP, UDP, ICMP
-import datetime
+README.md
+Network Packet Sniffer
 
-packets = []
-packet_count = 0
+A Python-based network packet sniffer developed using Scapy.
 
+Features
+Captures live network packets
+Detects TCP, UDP and ICMP traffic
+Displays source and destination IP addresses
+Saves captured packets into PCAP format
+Compatible with Wireshark for packet analysis
 
-def show_packet(packet):
-    global packet_count
+Tools Used
 
-    packet_count += 1
-    packets.append(packet)
+Python 3
+Scapy
+Kali Linux
+Wireshark
 
-    if packet.haslayer(IP):
+Installation
+pip install scapy
 
-        src = packet[IP].src
-        dst = packet[IP].dst
+Run
+sudo python3 sniffer.py
+Output
 
-        now = datetime.datetime.now().strftime("%H:%M:%S")
+Packets are displayed in real time and stored in a PCAP file for further analysis.
 
-        protocol = "OTHER"
+Skills Demonstrated
 
-        if packet.haslayer(TCP):
-            protocol = "TCP"
-
-        elif packet.haslayer(UDP):
-            protocol = "UDP"
-
-        elif packet.haslayer(ICMP):
-            protocol = "ICMP"
-
-        print(f"[{now}] #{packet_count} [{protocol}] {src} --> {dst}")
-
-
-print("Starting Packet Sniffer...")
-print("Capturing 20 packets...\n")
-
-sniff(
-    iface="eth0",
-    prn=show_packet,
-    count=20,
-    store=False
-)
+Packet Analysis
+Network Monitoring
+TCP/IP Protocols
+Cybersecurity Fundamentals
 
 wrpcap("/home/kali/capture.pcap", packets)
 
